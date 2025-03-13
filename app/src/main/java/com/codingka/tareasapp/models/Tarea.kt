@@ -14,3 +14,7 @@ data class Tarea(
 )
 
 //registro1    registro2   registro3
+//Tarea     Sqlite
+//id     titulo     descripcion     categoria      eliminado
+//0      primer     etc              etc              etc
+//1      ggggg      etc              etc              etc

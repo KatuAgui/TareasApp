@@ -9,7 +9,7 @@ import com.codingka.tareasapp.dao.TareaDao
 import com.codingka.tareasapp.models.Categoria
 import com.codingka.tareasapp.models.Tarea
 
-@Database(entities = [Tarea::class, Categoria::class], version = 1)//exportSchema=false
+@Database(entities = [Tarea::class, Categoria::class], version = 1, exportSchema = false)//exportSchema=false
 abstract class TareaDatabase:RoomDatabase() {
 
     //Funciones Daos
@@ -32,8 +32,6 @@ abstract class TareaDatabase:RoomDatabase() {
                 INSTANCE = instance
                 instance
             }
-
-
         }
     }
 }

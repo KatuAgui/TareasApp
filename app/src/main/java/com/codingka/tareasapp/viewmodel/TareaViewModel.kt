@@ -13,13 +13,13 @@ class TareaViewModel(private val tareaRepository: TareaRepository): ViewModel() 
 
     val _tareas = MutableLiveData<List<Tarea>>()//vacio
 
-    val tareas: LiveData<List<Tarea>> get() = _tareas
+    val tareas: LiveData<List<Tarea>> get() = _tareas//sin importar la accion todos los cambios se escucharan aqui
 
 
     //Funcion Obtener tareas
     fun obtenerTareas() {
         viewModelScope.launch {
-            _tareas.value =  tareaRepository.obtenerTareas()
+            _tareas.value = tareaRepository.obtenerTareas()
         }
     }
 
