@@ -1,5 +1,6 @@
 package com.codingka.tareasapp.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,13 +20,21 @@ class TareaViewModel(private val tareaRepository: TareaRepository): ViewModel() 
     //Funcion Obtener tareas
     fun obtenerTareas() {
         viewModelScope.launch {
+            Log.d("Insertar", "ViewModel Obtener tarea")
             _tareas.value = tareaRepository.obtenerTareas()
+            val tareasObtenidas = tareaRepository.obtenerTareas()
+            Log.d("Insertar", "Tareas obtenidas: ${tareasObtenidas.size}")
+            tareasObtenidas.forEach {
+                Log.d("Insertar", "→ ${it.titulo} | ${it.descripcion} | ${it.categoria}")
+            }
         }
     }
 
     fun insertarTarea(tarea:Tarea){
         viewModelScope.launch {
+            Log.d("Insertar", "ViewModel")
             tareaRepository.insertarTarea(tarea)
+
             obtenerTareas()
         }
     }

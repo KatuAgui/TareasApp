@@ -8,6 +8,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -60,6 +61,7 @@ fun AgregarTarea(viewModel: TareaViewModel){
             if(titulo.isNotBlank() && descripcion.isNotEmpty() && categoria.isNotBlank()){
                 val tarea = Tarea(0, titulo, descripcion,categoria, false)
                 viewModel.insertarTarea(tarea)
+
             }else{
 
             }

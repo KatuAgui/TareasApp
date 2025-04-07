@@ -24,6 +24,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -36,7 +37,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.codingka.tareasapp.Greeting
+import com.codingka.tareasapp.config.Screens
 import com.codingka.tareasapp.models.Tarea
 import com.codingka.tareasapp.ui.theme.TareasAppTheme
 import com.codingka.tareasapp.viewmodel.TareaViewModel
@@ -45,10 +48,14 @@ import com.codingka.tareasapp.viewmodel.TareaViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TareasScreen(
-    tareaViewModel: TareaViewModel
+    tareaViewModel: TareaViewModel,  navController: NavController
 ){
     //Escuchar los cambios   observar el estado
    val tareas by tareaViewModel.tareas.observeAsState(initial = emptyList())
+    LaunchedEffect(Unit) {
+        tareaViewModel.obtenerTareas()
+    }
+
     //Ejecutar el view model
     Scaffold(
         topBar = {
@@ -62,6 +69,9 @@ fun TareasScreen(
         floatingActionButton = { //Redireccion    Pantalla de agg tareas
             FloatingActionButton(
                 onClick = {
+
+                    navController.navigate(Screens.AgregarTarea.route)
+                    //AgregarTarea(tareaViewModel)
                    //Redireccion
                 },
                 containerColor = MaterialTheme.colorScheme.primary
@@ -77,7 +87,7 @@ fun TareasScreen(
             //Buscar una tarea
             BuscarTarea(tareaViewModel)
             //Lista de tareas
-            ListaDeTareas(tareas,tareaViewModel)
+            ListaDeTareas(tareas,tareaViewModel, navController)
         }
 
     }

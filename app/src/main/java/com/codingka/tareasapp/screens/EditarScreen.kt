@@ -38,7 +38,7 @@ fun EditarTarea(viewModel: TareaViewModel, tareaId: Long){
     //categoria
     var categoria by remember { mutableStateOf(tareaAEditar?.categoria ?: "No se encontro la categoria") }
 
-
+//Column //Row
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         Text("Nueva Tarea", fontSize = 24.sp, fontWeight = FontWeight.Bold)
 

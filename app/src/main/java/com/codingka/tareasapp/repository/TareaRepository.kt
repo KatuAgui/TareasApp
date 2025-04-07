@@ -1,5 +1,6 @@
 package com.codingka.tareasapp.repository
 
+import android.util.Log
 import com.codingka.tareasapp.dao.TareaDao
 import com.codingka.tareasapp.models.Tarea
 
@@ -10,10 +11,12 @@ class TareaRepository(private val tareaDao: TareaDao) {
 
     //FUNCIONES
     suspend fun insertarTarea(tarea: Tarea){
+        Log.d("Insertar", "Repository")
         tareaDao.insertarTarea(tarea)
     }
 
     suspend fun obtenerTareas(): List<Tarea>{
+        Log.d("Insertar", "Repository Obtener tarea")
         return tareaDao.obtenerTodasLasTareas()
     }
 

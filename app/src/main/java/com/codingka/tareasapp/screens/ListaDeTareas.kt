@@ -21,12 +21,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.codingka.tareasapp.config.Screens
 import com.codingka.tareasapp.models.Tarea
 import com.codingka.tareasapp.viewmodel.TareaViewModel
 
 
 @Composable
-fun ListaDeTareas(tareas: List<Tarea>, viewModel: TareaViewModel){
+fun ListaDeTareas(tareas: List<Tarea>, viewModel: TareaViewModel,  navController: NavController){
 
     if(tareas.isEmpty()){
         Text("NO HAY TAREAS DISPONIBLES",
@@ -34,7 +36,7 @@ fun ListaDeTareas(tareas: List<Tarea>, viewModel: TareaViewModel){
     }else{
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(tareas){tarea ->
-                TareaItem(tarea, viewModel)
+                TareaItem(tarea, viewModel, navController)
             }
         }
     }
@@ -42,7 +44,8 @@ fun ListaDeTareas(tareas: List<Tarea>, viewModel: TareaViewModel){
 
 @Composable
 fun TareaItem(tarea: Tarea,
-              viewModel: TareaViewModel
+              viewModel: TareaViewModel,
+              navController: NavController
 ){
     var mostrarDialog by remember { mutableStateOf(false) }
     Card(modifier = Modifier.padding(8.dp).fillMaxWidth()) {
@@ -54,7 +57,8 @@ fun TareaItem(tarea: Tarea,
                     mostrarDialog = true
                 }) { Text("Eliminar") }
                 Button(onClick = {
-                    //Redireccion
+                   //Redigigir
+                    navController.navigate(Screens.EditarTarea.crearRuta(tarea.id))
                 }) { Text("Editar") }
             }
 
