@@ -4,8 +4,10 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.codingka.tareasapp.models.Tarea
+import com.codingka.tareasapp.models.TareaConCategoria
 
 @Dao
 interface TareaDao {
@@ -32,6 +34,10 @@ interface TareaDao {
     //Eliminar una tarea permanente
     @Delete
     suspend fun eliminarPermanente(tarea: Tarea)
+
+    @Transaction
+    @Query("SELECT * FROM tareas WHERE eliminado = 0")
+    suspend fun obtenerTodasLasTareasConCategoria(): List<TareaConCategoria>
 }
 
 

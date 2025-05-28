@@ -116,7 +116,7 @@ fun BuscarTarea(
 @Composable
 fun BuscarPreview() {
     TareasAppTheme {
-        val tarea = Tarea(1,"Titulo", "hola esta es una tarea", "Limpieza", true)
+        val tarea = Tarea(1,"Titulo", "hola esta es una tarea", 1, true)
        // TareaItem(tarea)
     }
 }
